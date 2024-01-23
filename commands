@@ -2,6 +2,21 @@
 / from start
 ~ home/user
 * wildcard
+ 
+Enter Visual Block Mode:
+
+Move the cursor to the first character of the first line you want to change.
+Press Ctrl + V to enter visual block mode.
+Select Lines:
+
+Use the arrow keys to move the cursor and select the lines you want to change.
+Change Lines:
+
+Press c to start changing the selected block.
+Type the new text you want to replace the existing text with.
+Press Esc to apply the changes.
+
+========================================================================================================
 ~To shift to different ip address: 
  ssh -p 22 sp.sagar.mehta@10.9.113.140
 ~to create docker:
@@ -22,4 +37,6 @@ nm filename
 mount 10.12.110.169:/home/sp.sagarmehta/ani_ws mount_folder
 ~build system for ninja
 cmake ../ -G Ninja
+
+
 
