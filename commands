@@ -1,0 +1,6 @@
+To shift to different ip address: 
+ssh -p 22 sp.sagar.mehta@10.9.113.140
+to create docker:
+efdocker run gcc5 --name name_of_docker
+to run a docker:
+docker exec -ti anirudh_dockr bash
