@@ -14,4 +14,7 @@
  find . -type f -name "*.cpp" 
  find . -type f -name "*.cpp" -delete 
  grep -r --include="*.txt"  "hello"
-
+~ ln -s targetfile linkname
+linkread -f linkname give full address of targetfile
+~nm command 
+nm filename
