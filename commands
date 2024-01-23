@@ -8,7 +8,8 @@
  efdocker run gcc5 --name name_of_docker
 ~to run a docker:
  docker exec -ti anirudh_dockr bash
-~scp username@remote_host:/path/to/file.txt /local/path/
+~TO copy from servers
+ scp username@remote_host:/path/to/file.txt /local/path/
 ~to find files
  find . -type f -name "*.cpp" 
  find . -type f -name "*.cpp" -delete 
