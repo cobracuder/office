@@ -20,3 +20,6 @@ linkread -f linkname give full address of targetfile
 nm filename
 ~mount
 mount 10.12.110.169:/home/sp.sagarmehta/ani_ws mount_folder
+~build system for ninja
+cmake ../ -G Ninja
+
