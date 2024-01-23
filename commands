@@ -16,6 +16,21 @@ Press c to start changing the selected block.
 Type the new text you want to replace the existing text with.
 Press Esc to apply the changes.
 
+add custom command ko execute krwane ke liye usko trigger krwna pdega 
+work flow->
+add_custom_command(
+    OUTPUT generated.txt
+    COMMAND echo "${CMAKE_SOURCE_DIR}" > generated.txt
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${source_dir} ${dest_dir}
+    )
+add_custom_target(
+    attack
+    COMMAND echo "custom func called"
+    DEPENDS generated.txt)
+ninja attack krne se target execute hoga 
+fir wo depend hoga generated.txt pe jo ki 
+add custom command ko trigger krra hai
+
 ========================================================================================================
 ~To shift to different ip address: 
  ssh -p 22 sp.sagar.mehta@10.9.113.140
@@ -37,6 +52,8 @@ nm filename
 mount 10.12.110.169:/home/sp.sagarmehta/ani_ws mount_folder
 ~build system for ninja
 cmake ../ -G Ninja
+~cmake add_custom_command
+COMMAND ${CMAKE_COMMAND} -E copy_directory ${source_dir} ${dest_dir}
 
 
 
