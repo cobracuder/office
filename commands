@@ -19,4 +19,4 @@ linkread -f linkname give full address of targetfile
 ~nm command 
 nm filename
 ~mount
-mount -t nfs 10.212.134.39:/home/sp.sagarmehta/ani_ws ./mount_dir/
+mount 10.12.110.169:/home/sp.sagarmehta/ani_ws mount_folder
