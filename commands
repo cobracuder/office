@@ -31,6 +31,21 @@ ninja attack krne se target execute hoga
 fir wo depend hoga generated.txt pe jo ki 
 add custom command ko trigger krra hai
 
+file(GLOB_RECURSE src_files "${source_dir}/*")
+foreach(src_file IN LISTS src_files)
+    string(REPLACE "${source_dir}" "${dest_dir}" bin_file ${src_file})
+#add_subdirectory(work)
+    list(APPEND bin_files "${bin_file}")
+    add_custom_command(
+        OUTPUT ${bin_file}
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${src_file} ${bin_file}
+        DEPENDS ${src_file}
+        )
+    endforeach()
+    add_custom_target(attack DEPENDS ${bin_files})
+
+foreache use krne se multiple custom command generate hojare hai.
+
 ========================================================================================================
 ~To shift to different ip address: 
  ssh -p 22 sp.sagar.mehta@10.9.113.140
