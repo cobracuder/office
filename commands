@@ -69,6 +69,6 @@ mount 10.12.110.169:/home/sp.sagarmehta/ani_ws mount_folder
 cmake ../ -G Ninja
 ~cmake add_custom_command
 COMMAND ${CMAKE_COMMAND} -E copy_directory ${source_dir} ${dest_dir}
-
+hello i made changes
 
 
