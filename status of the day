@@ -1,0 +1,12 @@
+Hi,
+
+Following is the status of the day:
+- Completed profiling for following ops:
+MaxPool2dIndices().
+Diag()
+Square()
+To Do:
+- Complete Remaining Ops
+
+Thanks and Regards
+Anirudh
