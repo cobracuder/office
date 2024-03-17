@@ -1,3 +1,28 @@
+/*
+inline std::ostream &operator<<(std::ostream &os, const ops::topsopTensor *t) {
+  auto tensor_size =
+      std::accumulate(t->dims, t->dims + t->rank, 1, std::multiplies<>{});
+  auto vec = std::vector<float>(tensor_size, 3);
+  topsMemcpy(vec.data(), t->mem_handle, tensor_size * 4,
+             topsMemcpyDeviceToHost);
+
+  os << "\nRank: " << t->rank << "\n";
+  os << "Dims: ";
+  for (auto i = 0; i < t->rank; i++) {
+    os << t->dims[i] << " ";
+  }
+
+  os << "\nStrides: ";
+  for (auto i = 0; i < t->rank; i++) {
+    os << t->strides[i] << " ";
+  }
+
+  os << "\n";
+  std::copy(vec.begin(), vec.end(), std::ostream_iterator<int>(os, " "));
+  os << "\n";
+  return os;
+}
+*/
 #include"bits/stdc++.h"
 using namespace std;
 int main()
