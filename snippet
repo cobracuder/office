@@ -21,6 +21,12 @@ inline std::ostream &operator<<(std::ostream &os, const ops::topsopTensor *t) {
   std::copy(vec.begin(), vec.end(), std::ostream_iterator<int>(os, " "));
   os << "\n";
   return os;
+
+// to call 
+
+topsopTensor *input = inputs_[0];
+std::cout << "input tensor\n";
+std::cout << input << std::endl;
 }
 */
 #include"bits/stdc++.h"
