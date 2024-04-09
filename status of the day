@@ -1,12 +1,60 @@
-Hi,
 
-Following is the status of the day:
-- Completed profiling for following ops:
-MaxPool2dIndices().
-Diag()
-Square()
-To Do:
-- Complete Remaining Ops
+int64_t broad_index = -1;
++  bool is_broadcastble() {
++    for (int64_t i = 0; i < inputs_[0]->rank; i++) {
++      if ((inputs_[0]->dims[i] != inputs_[1]->dims[i]) &&
++          (inputs_[0]->dims[i] == 1 || inputs_[1]->dims[i] == 1)) {
++        if (inputs_[0]->dims[i] == 1) {
++          broad_index = 0;
++        } else {
++          broad_index = 1;
++        }
++        return true;
++      }
++    }
++
++    return false;
++  }
++
++  void create_tens(topsopTensor *input, topsopTensorHandle_t &broadcasted) {
++
++     void *dev = nullptr;
++     topsMalloc(&dev,
++                 polar_para_.out_ele * GetDataBpe(input->data_type));
++
++      topsopSize_t broadcasted_tensor_dims, broadcasted_tensor_strides;
++
++      broadcasted_tensor_dims.data = input->dims;
++      broadcasted_tensor_dims.len = input->rank;
++      broadcasted_tensor_strides.data = input->strides;
++      broadcasted_tensor_strides.len = input->rank;
++      topsopCreateTensor(
++          &broadcasted_tensor_dims, &broadcasted_tensor_strides,
++          input->data_type, dev, &broadcasted);
 
-Thanks and Regards
-Anirudh
+for (int64_t i = 0; i < inputs_[0]->rank; i++) {
++      if ((inputs_[0]->dims[i] != inputs_[1]->dims[i]) &&
++          (inputs_[0]->dims[i] != 1 && inputs_[1]->dims[i] != 1)) {
++        OPLIB_LOG_INFO(TopsFlame) << "topsatenPolar error: "
++                                  << "Wrong abs and angle shape ";
++        return TOPSOP_STATUS_BAD_PARAM;
++      }
+     }
++    if (is_broadcastble()) {
++      printf("\n inside : %ld\n", broad_index);
++
++      if (broad_index) {
++       topsopTensorHandle_t broadcasted_rhs_tensor = nullptr;
++        create_tens(inputs_[0], broadcasted_rhs_tensor);
++        workspace_tensor_rhs = broadcasted_rhs_tensor;
++
++        FLAMECHECK(topsaten::topsatenCopy(workspace_tensor_rhs, rhs_tensor,
++                                          false, stream_));
++      } else {
++       topsopTensorHandle_t broadcasted_lhs_tensor = nullptr;
++        create_tens(inputs_[1], broadcasted_lhs_tensor);
++        workspace_tensor_lhs = broadcasted_lhs_tensor;
++        FLAMECHECK(topsaten::topsatenCopy(
++            workspace_tensor_lhs, lhs_tensor, false, stream_));
++      }
++    }
