@@ -23,7 +23,15 @@ inline std::ostream &operator<<(std::ostream &os, const ops::topsopTensor *t) {
   return os;
 
 // to call 
+/*
+  float *in = reinterpret_cast<float*>(malloc(para.total_elem*4));
 
+  topsMemcpy(in, x, para.total_elem*4, topsMemcpyDeviceToHost);
+
+  for(int i = 0; i < para.total_elem; i++) {
+     printf("%f ",in[i]);
+  }
+*/
 topsopTensor *input = inputs_[0];
 std::cout << "input tensor\n";
 std::cout << input << std::endl;
